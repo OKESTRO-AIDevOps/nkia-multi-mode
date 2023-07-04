@@ -18,9 +18,21 @@ func InitKaleidoRoot() error {
 
 	contexts := make([]string, 0)
 
-	var multi_app_origin MultiAppOrigin
+	multi_app_origin := make(MultiAppOrigin)
 
 	var blank_app_origin runtimefs.AppOrigin
+
+	var blank_record runtimefs.RecordInfo
+
+	var blank_repo runtimefs.RepoInfo
+
+	var blank_reg runtimefs.RegInfo
+
+	blank_app_origin.RECORDS = append(blank_app_origin.RECORDS, blank_record)
+
+	blank_app_origin.REPOS = append(blank_app_origin.REPOS, blank_repo)
+
+	blank_app_origin.REGS = append(blank_app_origin.REGS, blank_reg)
 
 	if !CheckNpiaRoot() {
 
@@ -126,6 +138,20 @@ func SaveAndSwitch(switch_to string) error {
 
 	kaleido_kube, err = LoadMultiOrigin()
 
+	var blank_app_origin runtimefs.AppOrigin
+
+	var blank_record runtimefs.RecordInfo
+
+	var blank_repo runtimefs.RepoInfo
+
+	var blank_reg runtimefs.RegInfo
+
+	blank_app_origin.RECORDS = append(blank_app_origin.RECORDS, blank_record)
+
+	blank_app_origin.REPOS = append(blank_app_origin.REPOS, blank_repo)
+
+	blank_app_origin.REGS = append(blank_app_origin.REGS, blank_reg)
+
 	if err != nil {
 		return fmt.Errorf("failed to s&s: %s", err.Error())
 	}
@@ -189,8 +215,6 @@ func SaveAndSwitch(switch_to string) error {
 	origin_switch_to, okay := kaleido_kube[switch_to]
 
 	if !okay {
-
-		var blank_app_origin runtimefs.AppOrigin
 
 		kaleido_kube[switch_to] = blank_app_origin
 
