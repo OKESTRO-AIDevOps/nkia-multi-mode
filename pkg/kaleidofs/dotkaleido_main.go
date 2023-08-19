@@ -6,7 +6,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/OKESTRO-AIDevOps/npia-api/pkg/runtimefs"
+	"github.com/OKESTRO-AIDevOps/nkia/pkg/runtimefs"
 	goya "github.com/goccy/go-yaml"
 )
 
